@@ -117,19 +117,19 @@ Here is a compilation of development dependencies employed in this project, acco
 1.  **jest**: Jest is a JavaScript unit testing framework employed for writing and executing unit tests for your code. Install it using the following command:
 
 ```
-npm install -d jest
+npm install -D jest
 ```
 
 2. **nodemon**: Nodemon is a tool that monitors changes in your project files and automatically restarts the Node.js server upon detection of modifications. To install Nodemon, use the following command:
 
 ```
-npm install -d nodemon
+npm install -D nodemon
 ```
 
 3. **supertest**: Supertest is a library employed for conducting integration tests on HTTP/Express applications. To install Supertest, use the following command:
 
 ```
-npm install -d supertest
+npm install -D supertest
 ```
 
 ## 3. Server start
