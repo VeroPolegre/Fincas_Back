@@ -39,7 +39,7 @@ npm install express
 
 **Mongoose**
 
-Database drivers are crucial for establishing connections and facilitating communication with a specific database. In the context of Sequelize, you require a compatible database driver for Sequelize to connect to and manage your database. In this case, Mongoose is highlighted because it is commonly used for MongoDB databases. Depending on the database system you are working with (e.g., PostgreSQL, SQLite, etc.), you will need to install the corresponding driver to ensure seamless integration with Sequelize.
+Database drivers are crucial for establishing connections and facilitating communication with a specific database. In this case, Mongoose is highlighted because it is commonly used for MongoDB databases.
 
 ```
 npm install mongoose
@@ -90,25 +90,21 @@ npm install multer
 npm install nodemailer
 ```
 
-8. **sequelize-cli**: Sequelize CLI is a command-line tool for Sequelize. Install it using the following command:
-```
-npm install sequelize-cli
-```
 
-9. **swagger-jsdoc**: Swagger JSDoc is employed to generate Swagger documentation from JSDoc comments within your code. To install it, use the following command:
+8. **swagger-jsdoc**: Swagger JSDoc is employed to generate Swagger documentation from JSDoc comments within your code. To install it, use the following command:
 
 ```
 npm install swagger-jsdoc
 ```
 
-10. **swagger-ui-express**: Swagger UI Express furnishes a user interface for exploring and testing Swagger documentation. Install it using the following command:
+9. **swagger-ui-express**: Swagger UI Express furnishes a user interface for exploring and testing Swagger documentation. Install it using the following command:
 
 ```
 npm install swagger-ui-express
 ```
 
 
-11. **uuidv4**: Uuidv4 is employed for generating universally unique identifiers (UUIDs) in accordance with the UUIDv4 specification. To install it, use the following command:
+10. **uuidv4**: Uuidv4 is employed for generating universally unique identifiers (UUIDs) in accordance with the UUIDv4 specification. To install it, use the following command:
 
 ```
 npm install uuidv4
