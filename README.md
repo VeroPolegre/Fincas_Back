@@ -37,14 +37,6 @@ Express stands out as a widely embraced web application framework within the Nod
 npm install express
 ```
 
-**Sequelize**
-
-Sequelize, an Object-Relational Mapping (ORM) library, streamlines the interaction with relational databases in Node.js. By abstracting the intricacies of direct SQL query writing, Sequelize enables developers to engage with databases using JavaScript models and objects. This approach makes the tasks of creating, reading, updating, and deleting data in a SQL database more intuitive and object-oriented.
-
-```
-npm install sequelize
-```
-
 **Mongoose**
 
 Database drivers are crucial for establishing connections and facilitating communication with a specific database. In the context of Sequelize, you require a compatible database driver for Sequelize to connect to and manage your database. In this case, Mongoose is highlighted because it is commonly used for MongoDB databases. Depending on the database system you are working with (e.g., PostgreSQL, SQLite, etc.), you will need to install the corresponding driver to ensure seamless integration with Sequelize.
