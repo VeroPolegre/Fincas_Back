@@ -37,17 +37,9 @@ Express stands out as a widely embraced web application framework within the Nod
 npm install express
 ```
 
-**Sequelize**
-
-Sequelize, an Object-Relational Mapping (ORM) library, streamlines the interaction with relational databases in Node.js. By abstracting the intricacies of direct SQL query writing, Sequelize enables developers to engage with databases using JavaScript models and objects. This approach makes the tasks of creating, reading, updating, and deleting data in a SQL database more intuitive and object-oriented.
-
-```
-npm install sequelize
-```
-
 **Mongoose**
 
-Database drivers are crucial for establishing connections and facilitating communication with a specific database. In the context of Sequelize, you require a compatible database driver for Sequelize to connect to and manage your database. In this case, Mongoose is highlighted because it is commonly used for MongoDB databases. Depending on the database system you are working with (e.g., PostgreSQL, SQLite, etc.), you will need to install the corresponding driver to ensure seamless integration with Sequelize.
+Database drivers are crucial for establishing connections and facilitating communication with a specific database. In this case, Mongoose is highlighted because it is commonly used for MongoDB databases.
 
 ```
 npm install mongoose
@@ -98,25 +90,21 @@ npm install multer
 npm install nodemailer
 ```
 
-8. **sequelize-cli**: Sequelize CLI is a command-line tool for Sequelize. Install it using the following command:
-```
-npm install sequelize-cli
-```
 
-9. **swagger-jsdoc**: Swagger JSDoc is employed to generate Swagger documentation from JSDoc comments within your code. To install it, use the following command:
+8. **swagger-jsdoc**: Swagger JSDoc is employed to generate Swagger documentation from JSDoc comments within your code. To install it, use the following command:
 
 ```
 npm install swagger-jsdoc
 ```
 
-10. **swagger-ui-express**: Swagger UI Express furnishes a user interface for exploring and testing Swagger documentation. Install it using the following command:
+9. **swagger-ui-express**: Swagger UI Express furnishes a user interface for exploring and testing Swagger documentation. Install it using the following command:
 
 ```
 npm install swagger-ui-express
 ```
 
 
-11. **uuidv4**: Uuidv4 is employed for generating universally unique identifiers (UUIDs) in accordance with the UUIDv4 specification. To install it, use the following command:
+10. **uuidv4**: Uuidv4 is employed for generating universally unique identifiers (UUIDs) in accordance with the UUIDv4 specification. To install it, use the following command:
 
 ```
 npm install uuidv4
@@ -129,19 +117,19 @@ Here is a compilation of development dependencies employed in this project, acco
 1.  **jest**: Jest is a JavaScript unit testing framework employed for writing and executing unit tests for your code. Install it using the following command:
 
 ```
-npm install -d jest
+npm install -D jest
 ```
 
 2. **nodemon**: Nodemon is a tool that monitors changes in your project files and automatically restarts the Node.js server upon detection of modifications. To install Nodemon, use the following command:
 
 ```
-npm install -d nodemon
+npm install -D nodemon
 ```
 
 3. **supertest**: Supertest is a library employed for conducting integration tests on HTTP/Express applications. To install Supertest, use the following command:
 
 ```
-npm install -d supertest
+npm install -D supertest
 ```
 
 ## 3. Server start
