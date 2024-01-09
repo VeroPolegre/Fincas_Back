@@ -5,7 +5,8 @@ require("dotenv").config();
 const jwt_secret = process.env.JWT_SECRET;
 const transporter = require("../config/nodemailer");
 const fs = require("fs").promises;
-const API_URL = "https://socialnetwork-backend-project-dev-qxbk.4.us-1.fl0.io";
+const API_URL = "http://localhost:8080";
+
 const UserController = {
   async create(req, res, next) {
     try {
@@ -17,7 +18,6 @@ const UserController = {
       const user = await User.create({
         ...req.body,
         password: hash,
-        avatar: req.file ? req.file.filename : "example_uploaded_img.png",
         confirmed: false,
         role: "user",
       });
@@ -31,12 +31,12 @@ const UserController = {
       const url = { API_URL } + "/users/confirm/" + emailToken;
       await transporter.sendMail({
         to: req.body.email,
-        subject: "Please, confirm your email.",
-        html: `<h3>Welcome to ARTICIPE!</h3>
-        <a href="${url}"> Please, click to confirm it your email</a>
+        subject: "Confirmación de correo",
+        html: `<h3>Bienvenido</h3>
+        <a href="${url}">Porfavor, clicke aquí para confirmar su correo</a>
         `,
       });
-      res.status(201).send({ message: "User created successfully.", user });
+      res.status(201).send({ message: "Usuario registrado con éxito", user });
     } catch (error) {
       next(error);
     }
@@ -60,19 +60,23 @@ const UserController = {
 
   async login(req, res) {
     try {
-      const { username, password } = req.body;
-      if (!username || !password) {
+      const { email, password } = req.body;
+      if (!email || !password) {
         return res
           .status(400)
-          .send({ error: "Please enter both username and password." });
+          .send({ error: "Porfavor, introduzca correo y contraseña" });
       }
-      const user = await User.findOne({ username: req.body.username });
+      const user = await User.findOne({ email: req.body.email });
       if (!user) {
-        return res.status(400).send({ message: "Incorrect user or password" });
+        return res
+          .status(400)
+          .send({ message: "Correo o contraseña incorrectas" });
       }
       const isMatch = await bcrypt.compare(req.body.password, user.password);
       if (!isMatch) {
-        return res.status(400).send({ message: "Incorrect user or password" });
+        return res
+          .status(400)
+          .send({ message: "Correo o contraseña incorrectas" });
       }
       const token = jwt.sign(
         {
@@ -83,14 +87,10 @@ const UserController = {
       if (user.tokens.length > 4) user.tokens.shift();
       user.tokens.push(token);
       await user.save();
-      return res
-        .status(200)
-        .send({ message: `Welcome ${user.username}`, token, user });
+      return res.status(200).send({ message: `Bienvenido`, token, user });
     } catch (error) {
       console.error(error);
-      res
-        .status(500)
-        .send(`Error while trying to connect the current user`, error);
+      res.status(500).send(`Error al conectar el usuario`, error);
     }
   },
 
@@ -167,9 +167,7 @@ const UserController = {
           tokens: req.headers.authorization,
         },
       });
-      res
-        .status(200)
-        .send({ message: `Logged out was succesful, ${req.user.username}` });
+      res.status(200).send({ message: `Hasta pronto ${req.user.name}.` });
     } catch (error) {
       console.error(error);
       res.status(500).send({
@@ -195,22 +193,22 @@ const UserController = {
     }
   },
 
-  async getByName(req, res, next) {
-    try {
-      const username = new RegExp(req.params.username, "i");
-      const foundUser = await User.find({ username });
-      if (!foundUser) {
-        return res
-          .status(400)
-          .send({ message: `${req.params.username} not found` });
-      } else {
-        return res.status(200).send(foundUser);
-      }
-    } catch (error) {
-      console.error(error);
-      next(error);
-    }
-  },
+  // async getByName(req, res, next) {
+  //   try {
+  //     const name = new RegExp(req.params.name, "i");
+  //     const foundUser = await User.find({ name });
+  //     if (!foundUser) {
+  //       return res
+  //         .status(400)
+  //         .send({ message: `${req.params.name} not found` });
+  //     } else {
+  //       return res.status(200).send(foundUser);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     next(error);
+  //   }
+  // },
 };
 
 module.exports = UserController;

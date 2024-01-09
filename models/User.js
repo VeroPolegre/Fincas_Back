@@ -3,27 +3,29 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
-    username: {
+    name: {
       type: String,
-      required: [true, "Please, enter a username"],
-      unique: true,
-      trim: true,
+      required: [true, "Porfavor, introduce tu nombre"],
+    },
+    surname: {
+      type: String,
+      required: [true, "Porfavor, introduce tu apellido"],
     },
     email: {
       type: String,
-      required: [true, "Please, enter an email"],
-      match: [/.+\@.+\..+/, "Enter a valid email"],
+      required: [true, "Porfavor, introduce un correo"],
+      match: [/.+\@.+\..+/, "Introduce un correo válido"],
       unique: true,
       trim: true,
     },
     password: {
       type: String,
-      required: [true, "Please, enter a password"],
+      required: [true, "Porfavor, introduce una contraseña"],
     },
-    dob: {
-      type: Date,
-      required: [true, "Please, enter a date"],
-    },
+    // dob: {
+    //   type: Date,
+    //   required: [true, "Porfavor, introduce una fecha de nacimiento"],
+    // },
     // avatar: {
     //   type: String,
     // },
