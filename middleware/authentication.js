@@ -9,7 +9,7 @@ const authentication = async (req, res, next) => {
     const payload = jwt.verify(token, jwt_secret);
     const user = await User.findOne({ _id: payload._id, tokens: token });
     if (!user) {
-      return res.status(404).send({ message: "Not authorized" });
+      return res.status(404).send({ message: "Usuario no autenticado" });
     }
     req.user = user;
     next();
@@ -24,7 +24,9 @@ const authentication = async (req, res, next) => {
 const isAdmin = async (req, res, next) => {
   const admins = ["admin", "superadmin"];
   if (!admins.includes(req.user.role)) {
-    return res.status(403).send({ message: `You don't have permission` });
+    return res
+      .status(403)
+      .send({ message: "Usuario sin permisos autorizados" });
   }
   next();
 };

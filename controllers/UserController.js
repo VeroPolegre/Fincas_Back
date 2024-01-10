@@ -52,7 +52,7 @@ const UserController = {
         },
         { confirmed: true }
       );
-      res.status(201).send("User confirmed successfully!");
+      res.status(201).send("Usuario confirmado con éxito");
     } catch (error) {
       console.error(error);
     }
@@ -97,13 +97,13 @@ const UserController = {
   async updateProfile(req, res) {
     try {
       if (!req.user._id) {
-        return res.status(400).send({ message: "Register user first" });
+        return res.status(400).send({ message: "Registre un usuario" });
       }
 
       let foundUser = await User.findById(req.user._id);
 
       if (!foundUser) {
-        return res.status(400).send({ message: "User not found" });
+        return res.status(400).send({ message: "Usuario no encontrado" });
       }
       let updateFields = {};
 
@@ -121,7 +121,9 @@ const UserController = {
         new: true,
       });
 
-      res.status(200).send({ message: "User updated", foundUser });
+      res
+        .status(200)
+        .send({ message: "Usuario actualizado con éxito", foundUser });
     } catch (error) {
       console.error(error);
       res.status(500).send(error);
