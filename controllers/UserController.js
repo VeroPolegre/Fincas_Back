@@ -18,7 +18,7 @@ const UserController = {
       const user = await User.create({
         ...req.body,
         password: hash,
-        confirmed: false,
+        confirmed: true,
         role: "user",
       });
       const emailToken = jwt.sign(
