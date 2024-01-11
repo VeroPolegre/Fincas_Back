@@ -94,41 +94,41 @@ const UserController = {
     }
   },
 
-  async updateProfile(req, res) {
-    try {
-      if (!req.user._id) {
-        return res.status(400).send({ message: "Registre un usuario" });
-      }
+  // async updateProfile(req, res) {
+  //   try {
+  //     if (!req.user._id) {
+  //       return res.status(400).send({ message: "Registre un usuario" });
+  //     }
 
-      let foundUser = await User.findById(req.user._id);
+  //     let foundUser = await User.findById(req.user._id);
 
-      if (!foundUser) {
-        return res.status(400).send({ message: "Usuario no encontrado" });
-      }
-      let updateFields = {};
+  //     if (!foundUser) {
+  //       return res.status(400).send({ message: "Usuario no encontrado" });
+  //     }
+  //     let updateFields = {};
 
-      if (req.file) {
-        if (foundUser.avatar) {
-          await fs.unlink(`uploads/${foundUser.avatar}`);
-        }
-        updateFields.avatar = req.file.filename;
-      }
-      if (req.body.password) {
-        updateFields.password = bcrypt.hashSync(req.body.password, 10);
-      }
+  //     if (req.file) {
+  //       if (foundUser.avatar) {
+  //         await fs.unlink(`uploads/${foundUser.avatar}`);
+  //       }
+  //       updateFields.avatar = req.file.filename;
+  //     }
+  //     if (req.body.password) {
+  //       updateFields.password = bcrypt.hashSync(req.body.password, 10);
+  //     }
 
-      foundUser = await User.findByIdAndUpdate(req.user._id, updateFields, {
-        new: true,
-      });
+  //     foundUser = await User.findByIdAndUpdate(req.user._id, updateFields, {
+  //       new: true,
+  //     });
 
-      res
-        .status(200)
-        .send({ message: "Usuario actualizado con éxito", foundUser });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send(error);
-    }
-  },
+  //     res
+  //       .status(200)
+  //       .send({ message: "Usuario actualizado con éxito", foundUser });
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.status(500).send(error);
+  //   }
+  // },
 
   // async getLoggedUser(req, res) {
   //   try {

@@ -3,17 +3,21 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 3001;
 const cors = require("cors");
-// const path = require("path");
 
 const { handleTypeError } = require("./middleware/errors");
 const { dbConnection } = require("./config/config");
+const uploadFile = require("./uploadFile");
 
 dbConnection();
 app.use(express.json());
 app.use(cors());
 
 app.use("/users", require("./routes/users"));
-// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.post("/uploadFile", (req, res) =>
+  uploadFile(req.body.file)
+    .then((url) => res.send(url))
+    .catch((err) => res.status(500).send(err))
+);
 
 app.use(handleTypeError);
 
