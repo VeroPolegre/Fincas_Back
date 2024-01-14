@@ -32,7 +32,7 @@ const apiEndpoint = "";
 // };
 
 module.exports = (file) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     cloudinary.uploader.upload(
       file,
       opts,
@@ -41,17 +41,23 @@ module.exports = (file) => {
           console.log("Cloudinary URL:", cloudinaryResult.secure_url);
 
           try {
-            // Send the PDF to Data API
+            // Fetch the PDF file data from Cloudinary
+            const pdfResponse = await axios.get(cloudinaryResult.secure_url, {
+              responseType: "arraybuffer",
+            });
+
+            // Send the PDF file data to the API
             const apiResponse = await axios.post(apiEndpoint, {
-              pdfUrl: cloudinaryResult.secure_url,
+              pdfData: pdfResponse.data,
+              // Other data you might want to send along with the PDF
             });
 
             console.log("API Response:", apiResponse.data);
 
             return resolve(cloudinaryResult.secure_url);
-          } catch (apiError) {
-            console.error("API Error:", apiError.message);
-            return reject({ message: apiError.message });
+          } catch (error) {
+            console.error("Error:", error.message);
+            return reject({ message: error.message });
           }
         }
 

@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/users", require("./routes/users"));
+app.use("/incidents", require("./routes/incidents"));
 app.post("/uploadFile", (req, res) =>
   uploadFile(req.body.file)
     .then((url) => res.send(url))
