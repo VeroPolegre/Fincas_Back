@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-// const ObjectId = mongoose.SchemaTypes.ObjectId;
 
 const UserSchema = new mongoose.Schema(
   {
@@ -22,13 +21,6 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: [true, "Porfavor, introduce una contraseña"],
     },
-    // dob: {
-    //   type: Date,
-    //   required: [true, "Porfavor, introduce una fecha de nacimiento"],
-    // },
-    // avatar: {
-    //   type: String,
-    // },
     role: {
       type: String,
       default: "user",

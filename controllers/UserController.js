@@ -94,74 +94,6 @@ const UserController = {
     }
   },
 
-  // async updateProfile(req, res) {
-  //   try {
-  //     if (!req.user._id) {
-  //       return res.status(400).send({ message: "Registre un usuario" });
-  //     }
-
-  //     let foundUser = await User.findById(req.user._id);
-
-  //     if (!foundUser) {
-  //       return res.status(400).send({ message: "Usuario no encontrado" });
-  //     }
-  //     let updateFields = {};
-
-  //     if (req.file) {
-  //       if (foundUser.avatar) {
-  //         await fs.unlink(`uploads/${foundUser.avatar}`);
-  //       }
-  //       updateFields.avatar = req.file.filename;
-  //     }
-  //     if (req.body.password) {
-  //       updateFields.password = bcrypt.hashSync(req.body.password, 10);
-  //     }
-
-  //     foundUser = await User.findByIdAndUpdate(req.user._id, updateFields, {
-  //       new: true,
-  //     });
-
-  //     res
-  //       .status(200)
-  //       .send({ message: "Usuario actualizado con éxito", foundUser });
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.status(500).send(error);
-  //   }
-  // },
-
-  // async getLoggedUser(req, res) {
-  //   try {
-  //     const loggedUser = await User.findById({ _id: req.user._id })
-  //       .populate({
-  //         path: "postIds",
-  //         select:
-  //           "category images title content keywords likes commentIds createdAt",
-  //       })
-  //       .populate({
-  //         path: "following",
-  //         select: "username avatar",
-  //         populate: {
-  //           path: "postIds",
-  //           select: "category images title content keywords likes commentIds",
-  //         },
-  //       });
-  //     const numOfFollowing = loggedUser.following.length;
-  //     const numOfFollowers = loggedUser.followers.length;
-  //     const numOfPosts = loggedUser.postIds.length;
-  //     const loggedUserInfo = {
-  //       loggedUser,
-  //       numOfFollowers,
-  //       numOfFollowing,
-  //       numOfPosts,
-  //     };
-  //     res.status(200).send(loggedUserInfo);
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.status(500).send(`Error while trying to get the current user`, error);
-  //   }
-  // },
-
   async logout(req, res) {
     try {
       await User.findByIdAndUpdate(req.user._id, {
@@ -194,23 +126,6 @@ const UserController = {
       next(error);
     }
   },
-
-  // async getByName(req, res, next) {
-  //   try {
-  //     const name = new RegExp(req.params.name, "i");
-  //     const foundUser = await User.find({ name });
-  //     if (!foundUser) {
-  //       return res
-  //         .status(400)
-  //         .send({ message: `${req.params.name} not found` });
-  //     } else {
-  //       return res.status(200).send(foundUser);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     next(error);
-  //   }
-  // },
 };
 
 module.exports = UserController;
